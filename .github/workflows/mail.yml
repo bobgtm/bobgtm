@@ -5,7 +5,20 @@ on: [push]
 jobs:
   send-mail:
     runs-on: ubuntu-latest
+    
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  #
+      - name: Get commit details
+        id: commit-details
+        run: |
+          echo "diff=$(git diff-tree --no-commit-id --name-status -r ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "message<<EOF" >> $GITHUB_OUTPUT
+          echo "${{ github.event.head_commit.message }}" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Send Mail
         uses: dawidd6/action-send-mail@v4
         with:
@@ -28,6 +41,9 @@ jobs:
           body: |
             Repository: ${{ github.repository }}
             
+            Commit Message:
+            ${{ github.event.head_commit.message }}
+
             Files Changed:
             ${{ join(github.event.commits.*.modified, '\n') }}
             
@@ -36,6 +52,15 @@ jobs:
             
             Removed Files:
             ${{ join(github.event.commits.*.removed, '\n') }}
+            
+            Changes Made:
+            ${{ steps.commit-details.outputs.diff }}
+            
+            Full Diff:
+            ```
+            ${{ steps.commit-details.outputs.message }}
+            ```
+            Committed by: ${{ github.event.pusher.name }}
             
             Committed by: ${{ github.event.pusher.name }}
         # Optional unsigned/invalid certificates allowance:
