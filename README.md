@@ -5,7 +5,7 @@
 🌱 I’m currently learning: 
 - Go
 
-- (Networking)[https://github.com/bobgtm/Notes-Repo/tree/aaa2d1374fb9300e75527d0b1977371d436ff0ca/career/networks/network%2B]
+- [Networking](https://github.com/bobgtm/Notes-Repo/tree/aaa2d1374fb9300e75527d0b1977371d436ff0ca/career/networks/network%2B)
 
 - Linux
 <!--
