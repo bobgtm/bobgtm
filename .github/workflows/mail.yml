@@ -1,6 +1,8 @@
 
 name: Email Workflow
-on: [push]
+on:
+  push: 
+    branches: [ main ]
 
 jobs:
   send-mail:
