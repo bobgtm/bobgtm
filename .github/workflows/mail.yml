@@ -20,12 +20,14 @@ jobs:
           message="{{ github.event.head_commit.message }}"
           echo "diff=$diff" >> $GITHUB_OUTPUT
           echo "message=$message" >> $GITHUB_OUTPUT
+          
       - name: Extract File Changes
         id: file-changes
         run: |
           echo "modified_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} --diff-filter=M | tr '\n' ',')" >> $GITHUB_OUTPUT
           echo "added_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} --diff-filter=A | tr '\n' ',')" >> $GITHUB_OUTPUT
           echo "removed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} --diff-filter=D | tr '\n' ',')" >> $GITHUB_OUTPUT
+          
       - name: Send Mail
         uses: dawidd6/action-send-mail@v4
         with:
@@ -58,7 +60,7 @@ jobs:
             ${{ steps.file-changes.outputs.added_files }}
             
             Removed Files:
-            ${{ steps.file-changes.outputs.removed_files }
+            ${{ steps.file-changes.outputs.removed_files }}
             
             Full Diff:
             ```
