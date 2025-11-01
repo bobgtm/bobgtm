@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-🔭 I’m currently employed doing tech support for a school district. 
+🔭 I’m currently employed doing tech support.
 
 🌱 Learning as much Go, [Networking](https://github.com/bobgtm/Notes-Repo/tree/aaa2d1374fb9300e75527d0b1977371d436ff0ca/career/networks/network%2B), and [Linux](https://github.com/bobgtm/Notes-Repo/blob/main/LinuxStudyGuide.adoc) as possible
 <!--
